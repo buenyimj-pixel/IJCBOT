@@ -1,1 +1,1 @@
-# IJCBOT
+# nnnrc-bot
