@@ -1,4 +1,4 @@
-from selenium import webdriver
+=(.from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -402,5 +402,5 @@ class NigerianAccountBot:
 target_url = "https://nnnrc.com/#/register"
 NUM_ACCOUNTS = 2
 
-bot = NigerianAccountBot(start_code=1100906)  # ← START FROM 0101621
+bot = NigerianAccountBot(start_code=1100950)  # ← START FROM 0101621
 bot.run(target_url, num_accounts=NUM_ACCOUNTS)
