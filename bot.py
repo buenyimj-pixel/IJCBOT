@@ -11,6 +11,7 @@ import random
 import csv
 import os
 import sys
+import string  # ← ADDED FOR HUMAN-LIKE PASSWORDS
 
 class NigerianAccountBot:
     def __init__(self, start_code=7000100):
@@ -105,7 +106,10 @@ class NigerianAccountBot:
         return prefix + number
 
     def generate_password(self):
-        return ''.join([str(random.randint(0, 9)) for _ in range(6)])
+        """Generate a random human-like password (6-10 chars, mixed case + numbers)"""
+        length = random.randint(6, 10)
+        characters = string.ascii_letters + string.digits  # a-z, A-Z, 0-9
+        return ''.join(random.choices(characters, k=length))
 
     def format_code(self, code):
         return str(code).zfill(7)
@@ -343,10 +347,18 @@ class NigerianAccountBot:
 
             if success:
                 print(f"✅")
-                print(f"\n✅ ACCOUNT CREATED!")
-                print(f"   📱 Phone: {account['phone']}")
-                print(f"   🔑 Password: {account['password']}")
-                print(f"   🎯 Invitation Code: {account['invitation_code']}")
+                
+                # === COPY-PASTE READY OUTPUT ===
+                print("\n" + "="*60)
+                print("✅ ACCOUNT CREATED - COPY BELOW:")
+                print("="*60)
+                print(f"📱 Phone: {account['phone']}")
+                print(f"🔑 Password: {account['password']}")
+                print(f"🎯 Code: {account['invitation_code']}")
+                print("="*60)
+                print("\n📋 COPY THIS LINE:")
+                print(f"{account['phone']} | {account['password']} | {account['invitation_code']}")
+                print("="*60)
                 
                 self.logout()
                 self.go_to_register_page()
@@ -428,9 +440,18 @@ class NigerianAccountBot:
         print("\n" + "="*60)
         print("📊 FINAL SUMMARY")
         print(f"Total accounts created: {len(self.created_accounts)}")
-        print("\nAccount details:")
+        
+        # === FINAL COPY-PASTE SUMMARY ===
+        print("\n" + "="*60)
+        print("📋 COPY ALL ACCOUNTS BELOW:")
+        print("="*60)
         for idx, acc in enumerate(self.created_accounts, 1):
-            print(f"   #{idx}: Code: {acc['invitation_code']} | Phone: {acc['phone']} | Password: {acc['password']}")
+            print(f"{idx}. {acc['phone']} | {acc['password']} | {acc['invitation_code']}")
+        print("="*60)
+        
+        print("\n📱 Login Credentials:")
+        for idx, acc in enumerate(self.created_accounts, 1):
+            print(f"   #{idx} → Phone: {acc['phone']} | Password: {acc['password']}")
         print("="*60)
         print(f"➡️  Next run will start from: {self.format_code(self.current_code)}")
         print("="*60)
@@ -460,5 +481,5 @@ class NigerianAccountBot:
 target_url = "https://nnnrc.com/#/register"
 NUM_ACCOUNTS = 2
 
-bot = NigerianAccountBot(start_code=3068876)
+bot = NigerianAccountBot(start_code=3068884)
 bot.run(target_url, num_accounts=NUM_ACCOUNTS)
