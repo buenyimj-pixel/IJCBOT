@@ -10,11 +10,12 @@ import random
 import csv
 import os
 import sys
+import string  # ← ADD THIS IMPORT
 
 class NigerianAccountBot:
-    def __init__(self, start_code=101621):
+    def __init__(self, start_code=3068845):
         self.current_code = start_code
-        self.step_size = 1  # ← CHANGED TO +1
+        self.step_size = 1
         self.created_accounts = []
         self.account_counter = 0
         self.nigerian_prefixes = ['080', '081', '090', '091', '070', '071']
@@ -68,7 +69,12 @@ class NigerianAccountBot:
         return prefix + number
 
     def generate_password(self):
-        return ''.join([str(random.randint(0, 9)) for _ in range(6)])
+        """Generate a random lowercase password (6 or 8 characters)"""
+        # Randomly choose 6 or 8 characters
+        length = random.choice([6, 8])
+        # Generate random lowercase letters
+        characters = string.ascii_lowercase  # Only lowercase letters a-z
+        return ''.join(random.choices(characters, k=length))
 
     def format_code(self, code):
         return str(code).zfill(7)
@@ -293,7 +299,6 @@ class NigerianAccountBot:
                 self.logout()
                 self.go_to_register_page()
                 
-                # ← ADD +1 HERE (STEP SIZE)
                 self.current_code = code + self.step_size
                 self.account_counter += 1
                 print(f"📊 Accounts created: {self.account_counter}")
@@ -334,7 +339,7 @@ class NigerianAccountBot:
             print(f"   ⚠️ Navigation error: {e}")
             return False
 
-    def run(self, url, num_accounts=1):
+    def run(self, url, num_accounts=3):
         print("="*60)
         print("🇳🇬 NIGERIAN ACCOUNT CREATION BOT")
         print(f"Starting code: {self.format_code(self.current_code)}")
@@ -396,11 +401,11 @@ class NigerianAccountBot:
         print(f"   💾 Saved to accounts.csv")
 
 # ============================================
-# RUN THE BOT (START: 0101621, STEP: +1)
+# RUN THE BOT (START: 3068845, STEP: +1)
 # ============================================
 
 target_url = "https://nnnrc.com/#/register"
-NUM_ACCOUNTS = 3
+NUM_ACCOUNTS = 2
 
-bot = NigerianAccountBot(start_code=3068845)  # ← START FROM 0101621
+bot = NigerianAccountBot(start_code=3068865)  # 3068845
 bot.run(target_url, num_accounts=NUM_ACCOUNTS)
