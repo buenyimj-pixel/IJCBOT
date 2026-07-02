@@ -13,7 +13,7 @@ import sys
 import string
 
 class NigerianAccountBot:
-    def __init__(self, start_code=3068845):
+    def __init__(self, start_code=3068873):
         self.current_code = start_code
         self.step_size = 1
         self.created_accounts = []
@@ -69,6 +69,7 @@ class NigerianAccountBot:
         return prefix + number
 
     def generate_password(self):
+        """Generate a random lowercase password (6 or 8 characters)"""
         length = random.choice([6, 8])
         characters = string.ascii_lowercase
         return ''.join(random.choices(characters, k=length))
@@ -423,11 +424,11 @@ class NigerianAccountBot:
         print(f"   💾 Saved to accounts.csv")
 
 # ============================================
-# RUN THE BOT (START: 3068845, STEP: +1)
+# RUN THE BOT (START: 3068873, STEP: +1)
 # ============================================
 
 target_url = "https://nnnrc.com/#/register"
-NUM_ACCOUNTS = 3
+NUM_ACCOUNTS = 1
 
 bot = NigerianAccountBot(start_code=3068873)
 bot.run(target_url, num_accounts=NUM_ACCOUNTS)
