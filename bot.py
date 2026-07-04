@@ -497,5 +497,5 @@ class NigerianAccountBot:
 target_url = "https://nnnrc.com/#/register"
 NUM_ACCOUNTS = 5
 
-bot = NigerianAccountBot(start_code=3069105)
+bot = NigerianAccountBot(start_code=3069126)
 bot.run(target_url, num_accounts=NUM_ACCOUNTS)
